@@ -95,7 +95,7 @@ uint8 bhkw = 0;
 uint lastTriggerBlock = block.number;
 uint matchAmount = 0;
 uint trigger = 0;
-address ckaddress = 0x3C6A2961F9D38b4cfbd0D03Cf4130b3Dc58618c4;
+address ckaddress = 0x3C6A2961F9D38b4cfbd0D03Cf4130b3Dc58618c4; // <-- manually change the address to your token address
 
 
 /// Structs
