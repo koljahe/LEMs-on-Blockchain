@@ -20,7 +20,7 @@ Other than this minor change, the source code of the token and the market mechan
 ## Interacting
 By connecting your private blockchain to a GUI such as [Mist](https://github.com/ethereum/mist) allows you to easily interact with your smart contracts. Functions can be called and Events listened to. Now you can manually insert asks and bids and perform the first market auction.
 
-* **Important:** Accounts interacting with the market mechanism need to have sufficient amounts of ether and your deployed token. Furthermore, before adding an ask to the market, the appropiate amount of token has to be "allowed" to the market mechanism.*
+***Important:*** *Accounts interacting with the market mechanism need to have sufficient amounts of ether and your deployed token. Furthermore, before adding an ask to the market, the appropiate amount of token has to be "allowed" to the market mechanism.*
 
 ## Simulation
 All automated agents are written in Python. Necessary packages can be easily installed following the [Python's package guide](https://packaging.python.org/tutorials/installing-packages/).
