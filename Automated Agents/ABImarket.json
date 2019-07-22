@@ -1,0 +1,653 @@
+[{
+  "constant": true,
+  "inputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "name": "bid_ids",
+  "outputs": [{
+    "name": "",
+    "type": "address",
+    "value": "0x"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_fallbackpricelow",
+    "type": "uint256"
+  }],
+  "name": "updateFallbackPriceLow",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_amount",
+    "type": "uint256"
+  }, {
+    "name": "_price",
+    "type": "uint256"
+  }, {
+    "name": "_energytype",
+    "type": "uint8"
+  }],
+  "name": "addBid",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_address",
+    "type": "address"
+  }],
+  "name": "getAskPricebhkw",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getfee",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [],
+  "name": "sendEther",
+  "outputs": [{
+    "name": "success",
+    "type": "bool"
+  }],
+  "payable": true,
+  "stateMutability": "payable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_address",
+    "type": "address"
+  }],
+  "name": "getBidAmount",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_address",
+    "type": "address"
+  }],
+  "name": "getBidPrice",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_fallbackpricehigh",
+    "type": "uint256"
+  }],
+  "name": "updateFallbackPriceHigh",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getexchangerate",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getMatches",
+  "outputs": [{
+    "name": "",
+    "type": "uint256[]",
+    "value": []
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getBoolean",
+  "outputs": [{
+    "name": "",
+    "type": "bool",
+    "value": true
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getfallbackPriceLow",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "name": "ask_ids",
+  "outputs": [{
+    "name": "",
+    "type": "address",
+    "value": "0x"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_amount",
+    "type": "uint256"
+  }, {
+    "name": "_pricepv",
+    "type": "uint256"
+  }, {
+    "name": "_pricebhkw",
+    "type": "uint256"
+  }],
+  "name": "addAsk",
+  "outputs": [],
+  "payable": true,
+  "stateMutability": "payable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "a",
+    "type": "uint256"
+  }],
+  "name": "getMatchPreference",
+  "outputs": [{
+    "name": "",
+    "type": "uint8",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_address",
+    "type": "address"
+  }],
+  "name": "getAskPricepv",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "",
+    "type": "uint256"
+  }],
+  "name": "match_ids",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_sender",
+    "type": "address"
+  }],
+  "name": "getremainingvalue",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [],
+  "name": "try_to_auction",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [],
+  "name": "renounceOwnership",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_address",
+    "type": "address"
+  }],
+  "name": "getAskPreference",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getAllAsks",
+  "outputs": [{
+    "name": "",
+    "type": "address[]",
+    "value": []
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getAllBids",
+  "outputs": [{
+    "name": "",
+    "type": "address[]",
+    "value": []
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getUniformpriceBHKW",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "owner",
+  "outputs": [{
+    "name": "",
+    "type": "address",
+    "value": "0x987e127d7ad0a92d51420f63c534ff1fe8449530"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "isOwner",
+  "outputs": [{
+    "name": "",
+    "type": "bool",
+    "value": true
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_address",
+    "type": "address"
+  }],
+  "name": "getBidEnergytype",
+  "outputs": [{
+    "name": "",
+    "type": "uint8",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_fee",
+    "type": "uint256"
+  }],
+  "name": "updatefee",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [{
+    "name": "_address",
+    "type": "address"
+  }],
+  "name": "getAskAmount",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getUniformpricePV",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": true,
+  "inputs": [],
+  "name": "getfallbackPriceHigh",
+  "outputs": [{
+    "name": "",
+    "type": "uint256",
+    "value": "0"
+  }],
+  "payable": false,
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "_exchangerate",
+    "type": "uint256"
+  }],
+  "name": "updateexchangerate",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "newOwner",
+    "type": "address"
+  }],
+  "name": "transferOwnership",
+  "outputs": [],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "constant": false,
+  "inputs": [{
+    "name": "t",
+    "type": "uint256"
+  }],
+  "name": "setTrigger",
+  "outputs": [{
+    "name": "",
+    "type": "bool"
+  }],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "inputs": [],
+  "payable": true,
+  "stateMutability": "payable",
+  "type": "constructor"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "bidder",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "amount",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "price",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "energytype",
+    "type": "uint8"
+  }, {
+    "indexed": false,
+    "name": "lauf",
+    "type": "uint256"
+  }],
+  "name": "BidPlaced",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "asker",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "amount",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "pricepv",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "pricebhkw",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "lauf",
+    "type": "uint256"
+  }],
+  "name": "AskPlaced",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "uniformPricePV",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "wechselkurs",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "lauf",
+    "type": "uint256"
+  }],
+  "name": "UniformPricePV",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "uniformPriceBHKW",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "wechselkurs",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "lauf",
+    "type": "uint256"
+  }],
+  "name": "UniformPriceBHKW",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "bidder",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "asker",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "amount",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "energytype",
+    "type": "uint8"
+  }, {
+    "indexed": false,
+    "name": "lauf",
+    "type": "uint256"
+  }],
+  "name": "MatchMade",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "from",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "to",
+    "type": "address"
+  }, {
+    "indexed": false,
+    "name": "what",
+    "type": "string"
+  }, {
+    "indexed": false,
+    "name": "amount",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "lauf",
+    "type": "uint256"
+  }],
+  "name": "Transaction",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "oldprice",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "newprice",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "which",
+    "type": "string"
+  }],
+  "name": "UpdatePrice",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": false,
+    "name": "oldrate",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "newrate",
+    "type": "uint256"
+  }, {
+    "indexed": false,
+    "name": "which",
+    "type": "string"
+  }],
+  "name": "NewExchangeRate",
+  "type": "event"
+}, {
+  "anonymous": false,
+  "inputs": [{
+    "indexed": true,
+    "name": "previousOwner",
+    "type": "address"
+  }, {
+    "indexed": true,
+    "name": "newOwner",
+    "type": "address"
+  }],
+  "name": "OwnershipTransferred",
+  "type": "event"
+}]
