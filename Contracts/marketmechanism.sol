@@ -228,22 +228,19 @@ function addAsk (uint _amount, uint _price, uint8 _energytype, string _timestamp
       energytoken.transfer(msg.sender,(remainingLockedValue[msg.sender]-_amount));
     }
     remainingLockedValue[msg.sender]=_amount;
+    }
+    emit BidPlaced(msg.sender, _amount, _price, _energytype,_timestamp,lauf);
   }
-  emit BidPlaced(msg.sender, _amount, _price, _energytype,_timestamp,lauf);
-}
 
 /// @dev Creation of a Bid
 /// @param _amount of electricity, _pricepv is the reservation price for PV-Energy,
 /// _pricebhkw is the reservation price for CHP-Energy, _timestamp of bid
 /// @notice A market participant can place an bid if no future ask has been made in t
 /// his trading period, empty asks are forbidden to be protected against DOS attacks
-function addAsk (uint _amount, uint _pricepv, uint _pricebhkw, string _timestamp) public payable hasethBalance(_amount,_pricepv,_pricebhkw) {
-    require(bids[msg.sender].amount==0); //prüft ob über die addresse bereits ein Bid platziert wurde
-    require (_amount > 0);
-    if(asks[msg.sender].amount==0){ //prüft ob bereits ein Bid über die addresse platziert wurde
-      //neues Ask wird erstellt
-      Ask storage ask = asks[msg.sender]; //fügt adresse des Askers zum mapping hinzu
-      //initialisiert neues Bid mit übergebenen daten
+function addBid (uint _amount, uint _pricepv, uint _pricebhkw, string _timestamp) public payable hasethBalance(_amount,_pricepv,_pricebhkw) {
+    require(bids[msg.sender].amount==0);
+    if(asks[msg.sender].amount==0){
+      Ask storage ask = asks[msg.sender];
       ask.asker = msg.sender;
       ask.amount = _amount;
       ask.pricepv = _pricepv;
@@ -257,11 +254,10 @@ function addAsk (uint _amount, uint _pricepv, uint _pricebhkw, string _timestamp
         pv++;
         ask.preference = 2;
       }
-      ask_ids.push(msg.sender) -1; //fügt die ID des Ask zum Array mit den IDs hinzu
+      ask_ids.push(msg.sender) -1;
       remainingLockedValue[msg.sender]=(msg.value);
     }
-
-    else { //wenn bereits ein Bid von der addresse besteht, wird dieses geupdated
+    else {
       Ask storage askUpdate= asks[msg.sender];
       askUpdate.amount = _amount;
       askUpdate.pricepv = _pricepv;
@@ -280,8 +276,6 @@ function addAsk (uint _amount, uint _pricepv, uint _pricebhkw, string _timestamp
 
       asks[msg.sender] = askUpdate;
 
-
-      //Verrechnung des bereits vorhandenen Betrages mit neuem Ask-Parametern
       uint _price = _pricebhkw;
       if (_pricepv > _pricebhkw){
         _price = _pricepv;
@@ -298,14 +292,13 @@ function addAsk (uint _amount, uint _pricepv, uint _pricebhkw, string _timestamp
         remainingLockedValue[msg.sender]=(remainingLockedValue[msg.sender]+msg.value);
       }
     }
-
-    emit AskPlaced (msg.sender, _amount, _pricepv,_pricebhkw,_timestamp,lauf);
+    emit BidPlaced (msg.sender, _amount, _pricepv, _pricebhkw, _timestamp,lauf);
   }
 
 
 
 /// View functions
-//Getter Funktionen für Asks
+
 function getAllAsks() public view returns (address[]){
   return ask_ids;
   }
