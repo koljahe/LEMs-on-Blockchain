@@ -7,66 +7,31 @@ import random
 from datetime import datetime, timedelta
 from cryptowatch_client import Client
 
+#Grants access to smart contract of the market mechanism
 with open('ABImarket.json','r') as f:
     abi1 = json.load(f)
 
-# Zugriff auf contracts & API ermöglichen
+# Only needed when using a PoA private blockchain
+# Allows access to private chain
 w3.middleware_stack.inject(geth_poa_middleware, layer =0)
-marketad = '0x75DBeE9debE9e1a5333a766651609779247CECa8' #per Hand ausfüllen
+
+#Needs to be filled manually
+marketad = '0x75DBeE9debE9e1a5333a766651609779247CECa8'
 market = w3.eth.contract(address = marketad, abi = abi1)
-fallbackpricehigh = 0
-fallbackpricelow = 0
-fee = 0
-exchangerate = 227
 
-def get_exchangerate():
-    global exchangerate
-    client = Client()
-    raw = client.get_markets_price(exchange='gdax', pair='etheur')
-    data1 = raw.json()
-    data = dict(data1['result'])
-    exchangerate = int(data['price']) #Auf integer gerundet
-
-def update_fee(price):
-    global fee
-    fee = int(((1*10**18)/price)/50000)
-    return fee
-
-def update_fallbackprices(price):
-    global fallbackpricehigh
-    global fallbackpricelow
-    fallbackpricelow = int((((1*10**18)/price)/100000)*12)
-    fallbackpricehigh =int((((1*10**18)/price)/10000000)*2667)
-
-def update_all():
-    try:
-        get_exchangerate()
-    except:
-        print("Server-Anfrage geht nicht durch",exchangerate)
-    update_fee(exchangerate)
-    update_fallbackprices(exchangerate)
-    w3.personal.unlockAccount(w3.eth.coinbase,'12345',0)
-    market.functions.updateFallbackPriceHigh(fallbackpricehigh).transact({'from': w3.eth.coinbase})
-    market.functions.updateFallbackPriceLow(fallbackpricelow).transact({'from': w3.eth.coinbase})
-    market.functions.updateexchangerate(exchangerate).transact({'from': w3.eth.coinbase})
-    market.functions.updatefee(fee).transact({'from': w3.eth.coinbase})
-
-
-w3.miner.start(1)
-w3.miner.stop()
-
+# Waits until first market closing time is reached and transactions are executed
 while (datetime.now() < datetime(2019,5,22,16,43,45)):
     time.sleep(1)
 
+# Calls the auction function for every trading period
+# Waits a fixed time interval for next auction 
 while True:
     aa = datetime.now()
     now = aa - timedelta(microseconds =aa.microsecond)
     w3.miner.start(1)
     print("Miner started",now)
-    update_all() #nur aifb server
-    print(exchangerate,fallbackpricehigh,fallbackpricelow,fee)
 
-    while(datetime.now() < now + timedelta(seconds=63)): #Jetzt 14.48
+    while(datetime.now() < now + timedelta(seconds=63)):
         time.sleep(1)
     print("Function Calls",datetime.now()) # Soll 14.50
     try:

@@ -14,6 +14,7 @@ Example Genesis blocks of our implementation using Proof-of-Work and Proof-of-Au
 ## Deploying Smart Contracts
 
 There are multiple ways to deploy smart contracts on private Ethereum chains. Following this [guide](https://www.virtualforce.io/blockchain/create-deploy-your-first-smart-contract-on-private-blockchain/), you should be able to deploy our contract on your private Ethereum blockchain.
+
 The smart contracts of the market mechanism and the ERC20 token can be found in the [Contracts](https://github.com/koljahe/LEMs-on-Blockchain/tree/master/Contracts) folder. In order to use all functionalities of the market, the smart contracts needs to implement our ERC20 Token. To connect the market to the token, the address of the deployed token smart contract has to be manually inserted into the market smart contract. A comment in the source code marks the variable.
 Other than this minor change, the source code of the token and the market mechanism can be copy/pasted and deployed on your private Ethereum chain.
 

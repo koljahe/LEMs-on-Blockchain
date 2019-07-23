@@ -229,7 +229,7 @@ function addAsk (uint _amount, uint _price, uint8 _energytype, string _timestamp
     }
     remainingLockedValue[msg.sender]=_amount;
     }
-    emit BidPlaced(msg.sender, _amount, _price, _energytype,_timestamp,lauf);
+    emit AskPlaced(msg.sender, _amount, _price, _energytype,_timestamp,lauf);
   }
 
 /// @dev Creation of a Bid
@@ -238,43 +238,43 @@ function addAsk (uint _amount, uint _price, uint8 _energytype, string _timestamp
 /// @notice A market participant can place an bid if no future ask has been made in t
 /// his trading period, empty asks are forbidden to be protected against DOS attacks
 function addBid (uint _amount, uint _pricepv, uint _pricebhkw, string _timestamp) public payable hasethBalance(_amount,_pricepv,_pricebhkw) {
-    require(bids[msg.sender].amount==0);
-    if(asks[msg.sender].amount==0){
-      Ask storage ask = asks[msg.sender];
-      ask.asker = msg.sender;
-      ask.amount = _amount;
-      ask.pricepv = _pricepv;
-      ask.pricebhkw = _pricebhkw;
-      ask.timestamp = _timestamp;
+    require(asks[msg.sender].amount==0);
+    if(bids[msg.sender].amount==0){
+      Bid storage bid = bids[msg.sender];
+      bid.bidder = msg.sender;
+      bid.amount = _amount;
+      bid.pricepv = _pricepv;
+      bid.pricebhkw = _pricebhkw;
+      bid.timestamp = _timestamp;
       if (_pricebhkw > _pricepv){
         bhkw++;
-        ask.preference = 3;
+        bid.preference = 3;
       }
       if (_pricepv > _pricebhkw){
         pv++;
-        ask.preference = 2;
+        bid.preference = 2;
       }
-      ask_ids.push(msg.sender) -1;
+      bid_ids.push(msg.sender) -1;
       remainingLockedValue[msg.sender]=(msg.value);
     }
     else {
-      Ask storage askUpdate= asks[msg.sender];
-      askUpdate.amount = _amount;
-      askUpdate.pricepv = _pricepv;
-      askUpdate.pricebhkw = _pricebhkw;
-      askUpdate.timestamp = _timestamp;
-      if (_pricebhkw > _pricepv && askUpdate.preference == 2){
+      Bid storage bidUpdate= bids[msg.sender];
+      bidUpdate.amount = _amount;
+      bidUpdate.pricepv = _pricepv;
+      bidUpdate.pricebhkw = _pricebhkw;
+      bidUpdate.timestamp = _timestamp;
+      if (_pricebhkw > _pricepv && bidUpdate.preference == 2){
         bhkw++;
         pv--;
-        askUpdate.preference = 3;
+        bidUpdate.preference = 3;
       }
-      if(_pricebhkw < _pricepv && askUpdate.preference == 3){
+      if(_pricebhkw < _pricepv && bidUpdate.preference == 3){
         pv++;
         bhkw--;
-        askUpdate.preference = 2;
+        bidUpdate.preference = 2;
       }
 
-      asks[msg.sender] = askUpdate;
+      bids[msg.sender] = bidUpdate;
 
       uint _price = _pricebhkw;
       if (_pricepv > _pricebhkw){
@@ -296,56 +296,85 @@ function addBid (uint _amount, uint _pricepv, uint _pricebhkw, string _timestamp
   }
 
 
-
 /// View functions
-
-function getAllAsks() public view returns (address[]){
-  return ask_ids;
-  }
-
-function getAskPreference(address _address) public view returns (uint){
-  return asks[_address].preference;
-  }
-
-function getAskPricepv(address _address) public view returns (uint){
-  return asks[_address].pricepv;
-  }
-
-function getAskPricebhkw(address _address) public view returns (uint){
-  return asks[_address].pricebhkw;
-  }
-
-function getAskAmount(address _address) public view returns (uint){
-  return asks[_address].amount;
-  }
-
-function getAskTimestamp(address _address) public view returns (string){
-  return asks[_address].timestamp;
-}
-
-//Getter für Bids
+/// @dev Shows all current bids
+/// @return array containing all bids
 function getAllBids() public view returns (address[]){
-      return bid_ids;
-    }
-
-function getBidPrice(address _address) public view returns (uint){
-  return bids[_address].price;
+  return bid_ids;
   }
 
+/// @dev Shows preference of bid
+/// @param address of bidder
+/// @return uint representing his energy preference
+function getBidPreference(address _address) public view returns (uint){
+  return bids[_address].preference;
+  }
+
+/// @dev Shows PV-price of bid
+/// @param address of bidder
+/// @return uint being his PV-price in Cents*100
+function getBidPricepv(address _address) public view returns (uint){
+  return bids[_address].pricepv;
+  }
+
+/// @dev Shows CHP-Price of bid
+/// @param address of bidder
+/// @return uint being his CHP-price in Cents*100
+function getBidPricebhkw(address _address) public view returns (uint){
+  return bids[_address].pricebhkw;
+  }
+
+/// @dev Shows electricity amount of bid
+/// @param address of bidder
+/// @return uint being the amount of electricity he wants to buy in kWh
 function getBidAmount(address _address) public view returns (uint){
   return bids[_address].amount;
   }
 
-function getBidEnergytype(address _address) public view returns (uint8){
-  return bids[_address].energytype;
-  }
-
+/// @dev Shows point in time of bid
+/// @param address of bidder
+/// @return string reprensenting the timestamp of the bid
 function getBidTimestamp(address _address) public view returns (string){
   return bids[_address].timestamp;
 }
 
+/// @dev Shows all current asks
+/// @return array containing all asks
+function getAllAsks() public view returns (address[]){
+      return ask_ids;
+    }
 
-//zusätzliche Getter Funktionen
+/// @dev Shows preferred price of ask
+/// @param address of asker
+/// @return uint being the price preference in Cents*100
+function getAskPrice(address _address) public view returns (uint){
+  return asks[_address].price;
+  }
+
+/// @dev Shows electricity amount of ask
+/// @param address of asker
+/// @return uint being the amount of electricity he wants to sell in kWh
+function getAskAmount(address _address) public view returns (uint){
+  return asks[_address].amount;
+  }
+
+/// @dev Shows energy type the asker wants to sell
+/// @param address of asker
+/// @return uint8 being type of electricity the asker wants to sell
+function getAskEnergytype(address _address) public view returns (uint8){
+  return asks[_address].energytype;
+  }
+
+/// @dev Shows point in time of ask
+/// @param address of asker
+/// @return string reprensenting the timestamp of the bid
+function getAskTimestamp(address _address) public view returns (string){
+  return asks[_address].timestamp;
+}
+
+/// @dev Shows electricity amount of bid
+/// @param address of bidder
+/// @return uint being the amount of electricity he wants to buy in kWh
 function getremainingvalue (address _sender) public view returns(uint){
   return remainingLockedValue[_sender];
   }
@@ -423,7 +452,7 @@ function setTrigger(uint t) public onlyOwner returns(bool) {
   }
 */
 
-//Sortierung der Bids aufsteigend
+/// @dev Sorting array of asks upwards
 function sort_arrayauf() private{
     uint256 l = bid_ids.length;
     for(uint i = 0; i < l; i++) {
