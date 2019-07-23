@@ -372,38 +372,44 @@ function getAskTimestamp(address _address) public view returns (string){
   return asks[_address].timestamp;
 }
 
-/// @dev Shows electricity amount of bid
-/// @param address of bidder
-/// @return uint being the amount of electricity he wants to buy in kWh
+/// @dev Shows the remaining locked value
+/// @param address of bidder/bidder
+/// @return uint being the amount of electricity (asker) or the
+/// amount of ether that has been locked for the trading period
 function getremainingvalue (address _sender) public view returns(uint){
   return remainingLockedValue[_sender];
   }
 
+/// @dev Shows the fallbackprice for buyers
+/// @return the current fallbackprichigh in cent*100
 function getfallbackPriceHigh() public view returns(uint){
   return fallbackPriceHigh;
   }
 
+/// @dev Shows the fallbackprice for sellers
+/// @return the current fallbackpricelow in cent*100
 function getfallbackPriceLow() public view returns(uint){
   return fallbackPriceLow;
   }
 
-/*function getfee() public view returns(uint){
-  return fee;
-  }
-*/
-
+/// @dev Shows all matches of trading period
+/// @return array containing all match-IDs
 function getMatches() public view returns (uint[]){
   return match_ids;
   }
 
-//Getter für Uniform-Preise und Match-Präferenz
+/// @dev Shows UniformPrice for PV of this trading period
+/// @return uint being the uniformpricepv in cent*100
 function getUniformpricePV () public view returns (uint) {
   return uniformPricePV;
   }
 
+/// @dev Shows UniformPrice for CHP of this trading period
+/// @return uint being the uniformpricebhkw in cent*100
 function getUniformpriceBHKW() public view returns (uint) {
       return uniformPriceBHKW;
   }
+
 
 function getMatchPreference (uint a ) public view returns (uint8){
   return matches[match_ids[a]].energytype;
@@ -445,12 +451,6 @@ function setTrigger(uint t) public onlyOwner returns(bool) {
   return true;
   }
 
-/*function updatefee(uint _fee) public onlyOwner returns(bool){
-  uint oldfee = fee;
-  fee = _fee;
-  emit UpdatePrice(oldfee,fee,"fee");
-  }
-*/
 
 /// @dev Sorting array of asks upwards
 function sort_arrayauf() private{
