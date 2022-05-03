@@ -2,6 +2,8 @@
 
 This repository contains the implementation of a blockchain-based local energy market (LEM) based on the Landau Microgrid Project. It contains a smart contract acting as central market place and automated agents to run simulations.
 
+The related paper can be found [here](https://www.researchgate.net/publication/344137190_Blockchain-based_local_energy_markets_Decentralized_trading_on_single-board_computers)
+
 ## Building a private chain
 
 The first step to recreate our implementation of a blockchain-based LEM is to create a private blockchain. Our implementation uses the Ethereum protocol. Further information and extensive guides to build an own private Ethereum blockchain can be found here:
